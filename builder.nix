@@ -100,7 +100,7 @@ stdenv.mkDerivation {
     ''}
     ${lib.optionalString (files != null)
       # copy files to avoid making etc read-only
-      "cp -r --no-preserve=all ${files} files"
+      "cp -r --preserve=mode,ownership ${files} files"
     }
     make image SHELL=${runtimeShell} \
       PROFILE="${profile}" \
